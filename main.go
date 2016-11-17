@@ -34,14 +34,14 @@ func main() {
 
 	var err error
 	pld := makePayload()
-	switch strings.ToLower(method) {
-	case "get":
+	switch strings.ToUpper(method) {
+	case "GET":
 		err = client.Get(endpoint, &val)
-	case "put":
+	case "PUT":
 		err = client.Put(endpoint, pld, &val)
-	case "delete":
+	case "DELETE":
 		err = client.Delete(endpoint, pld, &val)
-	case "post":
+	case "POST":
 		err = client.Post(endpoint, pld, &val)
 	default:
 		panic("Unsupported method :" + method)

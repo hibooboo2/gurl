@@ -25,6 +25,10 @@ func main() {
 	if endpoint == "" {
 		endpoint = os.Args[len(os.Args)-1]
 	}
+	if endpoint != "/" && strings.HasPrefix(endpoint, "/") {
+		endpoint = endpoint[1:]
+	}
+
 	if client.Verbose {
 		log.Println("Endpoint: ", endpoint)
 	}

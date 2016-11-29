@@ -31,5 +31,4 @@ func init() {
 
 	client.Host = viper.GetString("host")
 	client.AuthToken = viper.GetString("token")
-
 }

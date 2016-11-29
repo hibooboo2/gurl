@@ -9,6 +9,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/spf13/viper"
+
 	"github.com/hibooboo2/gurl/restclient"
 )
 
@@ -49,6 +51,16 @@ func main() {
 	if err == nil {
 		jsonText, _ := json.MarshalIndent(val, "", "    ")
 		fmt.Fprintln(os.Stdout, string(Format(jsonText)))
+		if endpoint == "login" {
+			m, ok := val.(map[string]interface{})
+			if ok && m["token"] != "" {
+				viper.Set("token", m["token"])
+				err = UpdateSettings(viper.GetViper())
+				if err != nil {
+					fmt.Fprintln(os.Stderr, err.Error())
+				}
+			}
+		}
 	} else {
 		fmt.Fprintln(os.Stdout, err.Error())
 	}

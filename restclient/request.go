@@ -117,6 +117,8 @@ func (c *APIClient) ExecuteRequest(method, endpoint string, payload, dest interf
 
 	switch {
 	case resp.StatusCode == 403:
+		log.Println("Url was ", endpoint)
+		log.Printf("Body was: %s", string(data))
 		return ErrForbidden
 	case resp.StatusCode == 401:
 		return ErrUnauthorized

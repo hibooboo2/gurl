@@ -27,8 +27,11 @@ func init() {
 	flag.StringVar(&method, "m", `get`, "method for type for endpoint (GET/PUT/POST/DELETE)")
 	flag.StringVar(&endpoint, "e", "", "Endpoint to use")
 	flag.StringVar(&payloadString, "d", "{}", "Json payload for the request to be used")
+	flag.StringVar(&client.Host, "h", "", "Host overide flag: ex: example.com")
 	flag.Parse()
 
-	client.Host = viper.GetString("host")
+	if client.Host == "" {
+		client.Host = viper.GetString("host")
+	}
 	client.AuthToken = viper.GetString("token")
 }

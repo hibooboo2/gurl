@@ -127,7 +127,6 @@ func (c *APIClient) ExecuteRequest(method, endpoint string, payload, dest interf
 		log.Printf("Body was: %s", string(data))
 		return fmt.Errorf("Got statusCode: %d expected status below 400", resp.StatusCode)
 	}
-
 	if dest != nil {
 		err = json.Unmarshal(data, dest)
 		if err != nil {
